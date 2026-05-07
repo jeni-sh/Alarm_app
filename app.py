@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import datetime
 import time
 
-st.title("⏰ Alarm Clock")
+st.title(" Alarm Clock")
 
 alarm_time = st.text_input("Enter alarm time (HH:MM:SS)")
 
@@ -18,7 +18,7 @@ st.write("Current Time:", current_time)
 
 if st.session_state.alarm_set:
     if current_time == st.session_state.time:
-        st.error("⏰ Wake up!")
+        st.error(" Wake up!")
 
         audio_file = open("alarm.wav", "rb")
         audio_bytes = audio_file.read()
