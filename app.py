@@ -1,8 +1,9 @@
 import streamlit as st
 from datetime import datetime
+import pytz
 import time
 
-st.title(" Alarm Clock")
+st.title("⏰ Alarm Clock")
 
 alarm_time = st.text_input("Enter alarm time (HH:MM:SS)")
 
@@ -13,12 +14,15 @@ if st.button("Set Alarm"):
     st.session_state.alarm_set = True
     st.session_state.time = alarm_time
 
-current_time = datetime.now().strftime("%H:%M:%S")
+# Nepal Time
+nepal = pytz.timezone("Asia/Kathmandu")
+current_time = datetime.now(nepal).strftime("%H:%M:%S")
+
 st.write("Current Time:", current_time)
 
 if st.session_state.alarm_set:
     if current_time == st.session_state.time:
-        st.error(" Wake up!")
+        st.error("⏰ Wake up!")
 
         audio_file = open("alarm.wav", "rb")
         audio_bytes = audio_file.read()
@@ -28,4 +32,4 @@ if st.session_state.alarm_set:
 
 # Refresh every second
 time.sleep(1)
-st.rerun()
+st.experimental_rerun()
