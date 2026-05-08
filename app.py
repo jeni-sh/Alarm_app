@@ -1,7 +1,6 @@
 import streamlit as st
 from datetime import datetime
 import pytz
-import time
 
 st.title("⏰ Alarm Clock")
 
@@ -26,10 +25,7 @@ if st.session_state.alarm_set:
 
         audio_file = open("alarm.wav", "rb")
         audio_bytes = audio_file.read()
+
         st.audio(audio_bytes, format="audio/wav")
 
         st.session_state.alarm_set = False
-
-# Refresh every second
-time.sleep(1)
-st.experimental_rerun()
